@@ -9,3 +9,12 @@
 	
   <%= f.submit 'Create book' %>
 <% end %>
+
+<h2>Users</h2>
+<p>image</p>
+<p>name</p>
+<%=@users.each do |user| %>
+<p><%= image_tag 'sample-author1.jpg' %></p>
+<%= user.name %>
+<%= link_to "show", user_path(user.id) %>
+<% end %>
