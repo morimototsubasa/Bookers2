@@ -1,23 +1,23 @@
 <h1>User info</h1>
-<p><%= image_tag 'sample-author1.jpg' %></p>
-<P><%= user.name %></P>
-<p><%= user.introduction %></p>
+<p><%= image_tag @user.get_profile_image(100, 100) %></p>
+<p><%= @user.name %></p>
+<p><%= @user.introduction %></p>
+<%= link_to "edit", edit_user_path(@user.id) %>
 <h1>New book</h1>
 <!-- form_with部分 -->
 <%= form_with model: Book.new do |f| %>
   <h4>Title</h4>
   <%= f.text_field :title %>
-	
+
   <h4>Opinion</h4>
   <%= f.text_area :opinion %>
-	
+
   <%= f.submit 'Create book' %>
 <% end %>
 <h1>Book dedail</h1>
 <% @books.each do |book| %>
 <div>
   <%= link_to "show",  book_path(book.id) %>
-  <% end %>
   <p><%= image_tag book.user.get_profile_image(100,100) %></p>
   <p><%= book.title %></p>
   <p><%= book.opinion %></p>
