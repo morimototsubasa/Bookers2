@@ -1,24 +1,52 @@
-<h1>User info</h1>
-<p><%= image_tag @user.get_profile_image(100, 100) %></p>
-<p><%= @user.name %></p>
-<p><%= @user.introduction %></p>
-<h1>New book</h1>
-<!-- form_with部分 -->
-<%= form_with model: Book.new do |f| %>
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-	
-  <h4>Opinion</h4>
-  <%= f.text_area :opinion %>
-	
-  <%= f.submit 'Create book' %>
-<% end %>
-<h1>Book detail</h1>
-<div>
-  <p><%= image_tag @user.get_profile_image(100, 100) %></p>
-   <p><%= @book.user.name %></p>
-  <p><%= @book.title %></p>
-  <p><%= @book.opinion %></p>
-  <%= link_to "edit", edit_book_path(@book.id) %>
-  <%= link_to "destroy", book_path(@book.id), method: :delete %>
-</div>
+ <p id ="notice"></p>
+  <div class="container px-5 px-sm-0">
+    <div class="row">
+      <div class="col-md-3">
+        <h1>User info</h1>
+        <%= image_tag @user.get_profile_image(100, 100) %>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th>name</th>
+              <th><%= @user.name %></th>
+            </tr>
+            <tr>
+              <th>introduction</th>
+              <th><%= @user.introduction %></th>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row">
+        <%= link_to edit_user_path(@user.id), class:"btn btn-outline-secondary btn-block edit_user_95" do %>
+         <i class="fas fa-user-cog"></i>
+        <% end %>
+        </div>
+        <h1>New book</h1>
+        <%= form_with model: Book.new do |f| %>
+          <div class="form-group">
+          <h4>Title</h4>
+          <%= f.text_field :title %>
+          </div>
+          <div class="form-group">
+          <h4>Opinion</h4>
+          <%= f.text_area :opinion %>
+          </div>
+          <div class="form-group">
+          <%= f.submit 'Create book', :class=>"btn btn-success" %>
+          </div>
+        <% end %>
+        </div>
+  <div class="col-md-8 offset-md-1">
+      <h1>Book detail</h1>
+      <table class="table">
+        <tr>
+          <td><%= image_tag @user.get_profile_image(100, 100) %><br><%= link_to @book.user.name, user_path(@user.id) %></td>
+          <td><%= @book.title %></td>
+          <td><%= @book.opinion %></td>
+        <% if @book.user == current_user %>
+          <td><%= link_to "edit", edit_book_path(@book.id), :class=>"btn btn-success" %></td>
+          <td><%= link_to "destroy", book_path(@book.id), method: :delete, :class=>"btn btn-sm btn-danger destroy_book_261" %></td>
+        <% end %>
+        </tr>
+      </table>
+  </div>     
