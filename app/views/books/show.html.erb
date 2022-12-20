@@ -29,10 +29,10 @@
           </div>
           <div class="form-group">
           <h4>Opinion</h4>
-          <%= f.text_area :opinion %>
+          <%= f.text_area :body %>
           </div>
           <div class="form-group">
-          <%= f.submit 'Create book', :class=>"btn btn-success" %>
+          <%= f.submit 'Create Book', :class=>"btn btn-success" %>
           </div>
         <% end %>
         </div>
@@ -42,11 +42,11 @@
         <tr>
           <td><%= image_tag @user.get_profile_image(100, 100) %><br><%= link_to @book.user.name, user_path(@user.id) %></td>
           <td><%= @book.title %></td>
-          <td><%= @book.opinion %></td>
+          <td><%= @book.body %></td>
         <% if @book.user == current_user %>
-          <td><%= link_to "edit", edit_book_path(@book.id), :class=>"btn btn-success" %></td>
-          <td><%= link_to "destroy", book_path(@book.id), method: :delete, :class=>"btn btn-sm btn-danger destroy_book_261" %></td>
+          <td><%= link_to "Edit", edit_book_path(@book.id), :class=>"btn btn-success" %></td>
+          <td><%= link_to "Destroy", book_path(@book.id), method: :delete, :class=>"btn btn-sm btn-danger destroy_book_261" %></td>
         <% end %>
         </tr>
       </table>
-  </div>     
+  </div>
